@@ -82,7 +82,7 @@ console.log(sum(1,2,3)); //6
 console.log(sum(1,2)); //8
 console.log(sum(1)); //10
 //实参大于形参
-unction test() {
+function test() {
     console.log(arguments); 
     console.log(test.arguments==arguments,arguments); //true
     console.log(arguments.length); //2
