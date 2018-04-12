@@ -1,0 +1,54 @@
+(function max( x,y){
+    console.log("the max is",x>y?x:y);
+}(2,3)); //the max is 3
+
+//可以没有函数名
+(function (x,y){ 
+    console.log("the min is",x<y?x:y);
+})(2,3); //the min is 2
+
+true && function(a,b){
+    return a>b?a:b;
+}(5,9); //9
+
+!function(x,y){
+    return x==y?true:false;
+}("5",5); //false
+
+//避免文件之间的全局污染，使用IIFE函数立即执行表达式
+
+function f(){
+    var getNumFuncs = [];
+    for(var i=0;i<10;i++){
+        getNumFuncs[i] = function(){
+            return i;
+        };
+    }
+    return getNumFuncs;
+}
+var tmp = f();
+tmp[3](); //10
+
+function f(){
+    var getNumFuncs = [];
+    for(var i=0;i<10;i++){
+        (function (j) {
+            getNumFuncs[j] = function(){return j;};
+        })(i);
+    }
+    return getNumFuncs;
+}
+var tmp = f();
+tmp[3](); //3
+//tmp[0]()...tmp[9]() //0...9
+
+for (var i = 0; i < 3; i++) {
+    (function(j) {  // j = i
+        setTimeout(function() {
+            console.log(new Date, j);
+        }, 1000*i);
+    })(i);
+}
+//Thu Apr 12 2018 22:19:43 GMT+0800 (中国标准时间) 0
+//Thu Apr 12 2018 22:19:44 GMT+0800 (中国标准时间) 1
+//Thu Apr 12 2018 22:19:45 GMT+0800 (中国标准时间) 2
