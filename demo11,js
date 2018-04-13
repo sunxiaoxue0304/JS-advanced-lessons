@@ -1,6 +1,13 @@
+//IIFE 立即执行的函数表达式
+
 (function max( x,y){
     console.log("the max is",x>y?x:y);
 }(2,3)); //the max is 3
+
+(function max( x,y){
+    console.log("the max is",x>y?x:y);
+})(2,3); //the max is 3
+//使用小括号两种方法
 
 //可以没有函数名
 (function (x,y){ 
